@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sign_in_by_apple_id/screens/main_screen/main_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:sign_in_by_apple_id/provider/provider_list.dart';
+import 'package:sign_in_by_apple_id/router/router_config.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MainScreen(),
+    return MultiProvider(
+      providers: ProviderList.providers,
+      builder: (context, child) {
+        return MaterialApp.router(
+          routerConfig: Routes.router,
+        );
+      },
     );
   }
 }
